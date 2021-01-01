@@ -94,4 +94,31 @@ class DataCleanser {
         out.close();
     }
 
+    public void printOpioidTreatmentsInTravisCounty(File uniqueZipCodes) throws FileNotFoundException {
+        Scanner temp = new Scanner(uniqueZipCodes);
+        HashSet<String> set = new HashSet();
+        String line;
+
+        while (temp.hasNextLine()) {
+            line = temp.nextLine();
+            set.add(line);
+        }
+
+        in.useDelimiter(",");
+        in.nextLine();
+
+        //TODO: the below code is longer than O(n^2).
+        // This can  be optimized to O(n) by changing the csv file format
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            for (String str : set) {
+                if (line.contains(str)) {
+                    out.println(line);
+                }
+            }
+        }
+
+        out.close();
+    }
+
 }

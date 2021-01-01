@@ -16,11 +16,11 @@ public class Main {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        File inputFile = new File("dataFiles//cleanedData.dat");
-        File outputFile = new File("dataFiles//uniqueHomeZipCodes.dat");
+        File inputFile = new File("dataFiles//OpioidTreatmentProgramsTexas.csv");
+        File outputFile = new File("dataFiles//OpioidTreatmentProgramsTravisCounty.dat");
         DataCleanser cleanser = new DataCleanser(inputFile, outputFile);
 
-        cleanser.printUniqueLines();
+        cleanser.printOpioidTreatmentsInTravisCounty(new File("dataFiles//uniqueHomeZipCodes.dat"));
     }
 }
 
