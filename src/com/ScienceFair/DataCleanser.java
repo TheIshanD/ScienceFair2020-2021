@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.Scanner;
 
 class DataCleanser {
@@ -34,9 +35,6 @@ class DataCleanser {
     }
 
     public void cleanAddresses(){
-
-
-
         String hNum = "";
         String street = "";
         String city = "";
@@ -81,4 +79,19 @@ class DataCleanser {
 
         out.close();
     }
+
+    public void printUniqueLines() {
+        String line;
+        HashSet<String> set = new HashSet<>();
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            set.add(line);
+        }
+
+        for (String s : set) {
+            out.println(s);
+        }
+        out.close();
+    }
+
 }
