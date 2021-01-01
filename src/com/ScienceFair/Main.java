@@ -14,8 +14,6 @@ public class Main {
         cleanser.streetName = true;
 
         cleanser.cleanAddresses();
-
-
     }
 }
 

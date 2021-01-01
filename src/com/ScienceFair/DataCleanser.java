@@ -1,6 +1,9 @@
 package com.ScienceFair;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 class DataCleanser {
@@ -45,29 +48,35 @@ class DataCleanser {
 
         String line;
         String[] arr;
+        String ans;
 
         while(in.hasNextLine()){
             line = in.nextLine();
             arr = line.split("[\\[,:]");
 
+            ans = "";
 
             if (houseNumber)
-                out.print(arr[8].substring(1, arr[8].length() - 1) + " ");
-            if(streetName)
-                out.print(arr[10] + " ");
-            if(cityName)
-                out.print(arr[12] + " ");
-            if(stateName)
-                out.print(arr[16].substring(1, arr[16].length() - 1) + " ");
-            if(postcode)
-                out.print(arr[18].substring(1, arr[18].length() - 1) + " ");
-            if(hashNum)
-                out.print(arr[20].substring(1, arr[20].length() - 2) + " ");
-            if(coordinates){
-                out.print(arr[26] + " ");
-                out.print(arr[27].substring(0, arr[27].length() - 3));
+                ans += arr[8].substring(1, arr[8].length() - 1) + ",";
+            if (streetName)
+                ans += arr[10].substring(1, arr[10].length() - 1) + ",";
+            if (cityName)
+                ans += arr[12].substring(1, arr[12].length() - 1) + ",";
+            if (stateName)
+                ans += arr[16].substring(1, arr[16].length() - 1) + ",";
+            if (postcode)
+                ans += arr[18].substring(1, arr[18].length() - 1) + ",";
+            if (hashNum)
+                ans += arr[20].substring(1, arr[20].length() - 2) + ",";
+            if (coordinates) {
+                ans += arr[26] + ",";
+                ans += arr[27].substring(0, arr[27].length() - 3);
             }
-            out.println();
+
+            if (ans.length() > 0)
+                out.println(ans.substring(0, ans.length() - 1));
+            else
+                out.println(ans);
         }
 
         out.close();
