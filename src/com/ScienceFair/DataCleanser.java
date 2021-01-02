@@ -161,10 +161,17 @@ class DataCleanser {
     }
 
     public void convertToCoordinates() {
+        HashSet<String> removeDups = new HashSet<>();
+
         while (in.hasNextLine()) {
             String location = in.nextLine();
-            out.println(APIMethods.geocode(location));
+            removeDups.add(APIMethods.geocode(location));
         }
+
+        for (String str : removeDups) {
+            out.println(str);
+        }
+
         out.close();
     }
 

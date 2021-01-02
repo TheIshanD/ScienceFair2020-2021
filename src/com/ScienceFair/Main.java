@@ -31,13 +31,18 @@ public class Main {
         cleanser.printPharmecyLocationsInTravisCounty(new File("dataFiles//uniqueHomeZipCodes.dat"));
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void determineCoordinatesofPharmacies() throws FileNotFoundException {
+        //BE CAREFUL! USES MAPQUEST API TRIALS!
+
         File inputFile = new File("dataFiles//PharmacysInTravisCounty.dat");
         File outputFile = new File("dataFiles//PharmacysTravisCountyGeographicCoordinates.dat");
         DataCleanser cleanser = new DataCleanser(inputFile, outputFile);
 
         cleanser.convertToCoordinates();
-        //System.out.println(APIMethods.geocode("1601-Trinity-St,78712,Austin"));
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        determineCoordinatesofPharmacies();
     }
 }
 
