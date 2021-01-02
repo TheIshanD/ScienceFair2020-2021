@@ -10,14 +10,24 @@ public class APIMethods {
 
     private static HttpURLConnection connection;
 
-    public static void geocoding(String streetName, String zipCode, String stateCode) {
+    public static String geocode(String place) {
+        String str = geocodeUtil(place);
+
+        str = str.substring(str.indexOf("\"lat\":"),
+                str.indexOf("},\"displayLatLng\":"));
+        str = str.substring(6);
+        str = str.replaceAll("\"lng\":", "");
+
+        return str;
+    }
+
+    private static String geocodeUtil(String place) {
 
         BufferedReader reader;
         String line;
         StringBuffer responseContent = new StringBuffer();
 
         try {
-            String place = ((streetName.replace(" ", "-")) + "," + zipCode + "," + stateCode);
             URL url = new URL("http://www.mapquestapi.com/geocoding/v1/address?key=lgA9nZBGzY0WaddHoKmGK058qOOHuk1H&location=" + place);
             connection = (HttpURLConnection) url.openConnection();
 
@@ -37,11 +47,14 @@ public class APIMethods {
             }
             reader.close();
 
-            System.out.println(responseContent.toString());
+            return responseContent.toString();
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             connection.disconnect();
         }
+
+        return "";
     }
 }

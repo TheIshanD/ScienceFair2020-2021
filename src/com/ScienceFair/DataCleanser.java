@@ -144,7 +144,10 @@ class DataCleanser {
                 // This can  be optimized to O(n) by changing the csv file format
                 for (String str : set) {
                     if (arr[5].equals("\"" + str + "\"")) {
-                        removeDups.add(arr[1]);
+                        String streetName = arr[1].substring(1, arr[1].length() - 1).replace(" ", "-");
+                        String zipCode = arr[5].substring(1, arr[5].length() - 1);
+                        String cityCode = "Austin";
+                        removeDups.add(streetName + "," + zipCode + "," + cityCode);
                     }
                 }
             }
