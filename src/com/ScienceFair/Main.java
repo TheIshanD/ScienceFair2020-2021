@@ -15,12 +15,24 @@ public class Main {
         cleanser.cleanAddresses();
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void filterOpioidTreatments() throws FileNotFoundException {
         File inputFile = new File("dataFiles//OpioidTreatmentProgramsTexas.csv");
         File outputFile = new File("dataFiles//OpioidTreatmentProgramsTravisCounty.dat");
         DataCleanser cleanser = new DataCleanser(inputFile, outputFile);
 
         cleanser.printOpioidTreatmentsInTravisCounty(new File("dataFiles//uniqueHomeZipCodes.dat"));
+    }
+
+    public static void pharmecys() throws FileNotFoundException {
+        File inputFile = new File("dataFiles//OpioidTreatmentProgramsTexas.csv");
+        File outputFile = new File("dataFiles//OpioidTreatmentProgramsTravisCounty.dat");
+        DataCleanser cleanser = new DataCleanser(inputFile, outputFile);
+
+        cleanser.printOpioidTreatmentsInTravisCounty(new File("dataFiles//uniqueHomeZipCodes.dat"));
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+
     }
 }
 

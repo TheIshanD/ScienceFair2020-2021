@@ -3,21 +3,21 @@ package com.ScienceFair;
 public class DistanceCalculator {
     private final static int EARTH_RADIUS = 6381;
 
-    private static double latitudeDifference(Point start, Point end) {
-        return Math.abs(end.latitude - start.longitude);
-    }
-
-    private static double longitudeDifference(Point start, Point end) {
-        return Math.abs(end.longitude - start.longitude);
-    }
-
     public static double ManhattanDistance(Point start, Point end) {
-        Point intermediete = new Point(start.latitude, end.longitude);
-        return haversine(start, intermediete) + haversine(intermediete, end);
+        Point intermediate = new Point(start.latitude, end.longitude);
+        return EuclideanDistance(start, intermediate) + EuclideanDistance(intermediate, end);
     }
 
-    public static double EucleadeanDistance(Point start, Point end) {
+    public static double EuclideanDistance(Point start, Point end) {
         return haversine(start, end);
+    }
+
+    public static double toMiles(double kilometers) {
+        return (kilometers * 0.62137119224);
+    }
+
+    public static double toKilometers(double miles) {
+        return (miles / 0.62137119224);
     }
 
     private static double haversine(Point start, Point end) {
@@ -28,6 +28,7 @@ public class DistanceCalculator {
         // distance between latitudes and longitudes
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
+
 
         // convert to radians
         lat1 = Math.toRadians(lat1);
@@ -40,13 +41,5 @@ public class DistanceCalculator {
                         Math.cos(lat2);
         double c = 2 * Math.asin(Math.sqrt(a));
         return EARTH_RADIUS * c;
-    }
-
-    public static double toMiles(double kilometers) {
-        return (kilometers * 0.62137119224);
-    }
-
-    public static double toKilometers(double miles) {
-        return (miles / 0.62137119224);
     }
 }

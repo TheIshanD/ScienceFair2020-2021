@@ -121,4 +121,41 @@ class DataCleanser {
         out.close();
     }
 
+    public void printPharmecyLocationsInTravisCounty(File uniqueZipCodes) throws FileNotFoundException {
+        Scanner temp = new Scanner(uniqueZipCodes);
+        HashSet<String> set = new HashSet();
+        String line;
+
+        while (temp.hasNextLine()) {
+            line = temp.nextLine();
+            set.add(line);
+        }
+
+        in.useDelimiter(",");
+        in.nextLine();
+
+        HashSet<String> removeDups = new HashSet<>();
+
+        String[] arr;
+        while (in.hasNextLine()) {
+            arr = in.nextLine().split(",");
+            if (arr[3].equals("\"Austin\"") && arr[4].equals("\"TX\"")) {
+                //TODO: the below code is longer than O(n^2).
+                // This can  be optimized to O(n) by changing the csv file format
+                for (String str : set) {
+                    if (arr[5].equals("\"" + str + "\"")) {
+                        removeDups.add(arr[1]);
+                    }
+                }
+            }
+        }
+
+        for (String str : removeDups) {
+            out.println(str);
+        }
+
+        out.close();
+    }
+
+
 }
