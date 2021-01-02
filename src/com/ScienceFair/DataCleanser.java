@@ -160,5 +160,12 @@ class DataCleanser {
         out.close();
     }
 
+    public void convertToCoordinates() {
+        while (in.hasNextLine()) {
+            String location = in.nextLine();
+            out.println(APIMethods.geocode(location));
+        }
+        out.close();
+    }
 
 }

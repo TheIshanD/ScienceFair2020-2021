@@ -13,10 +13,16 @@ public class APIMethods {
     public static String geocode(String place) {
         String str = geocodeUtil(place);
 
-        str = str.substring(str.indexOf("\"lat\":"),
-                str.indexOf("},\"displayLatLng\":"));
-        str = str.substring(6);
-        str = str.replaceAll("\"lng\":", "");
+        try {
+            str = str.substring(str.indexOf("\"lat\":"),
+                    str.indexOf("},\"displayLatLng\":"));
+            str = str.substring(6);
+            str = str.replaceAll("\"lng\":", "");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("ERROR");
+            str = "";
+            e.printStackTrace();
+        }
 
         return str;
     }

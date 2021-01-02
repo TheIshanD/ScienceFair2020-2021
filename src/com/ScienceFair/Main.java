@@ -32,7 +32,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        APIMethods.geocode("");
+        File inputFile = new File("dataFiles//PharmacysInTravisCounty.dat");
+        File outputFile = new File("dataFiles//PharmacysTravisCountyGeographicCoordinates.dat");
+        DataCleanser cleanser = new DataCleanser(inputFile, outputFile);
+
+        cleanser.convertToCoordinates();
+        //System.out.println(APIMethods.geocode("1601-Trinity-St,78712,Austin"));
     }
 }
 
