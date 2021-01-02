@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 
 public class Main {
 
-    public static void findZipCodes() throws FileNotFoundException {
+    public static void findHomes() throws FileNotFoundException {
         File inputFile = new File("dataFiles//travis-addresses-county.geojson");
-        File outputFile = new File("dataFiles//cleanedData.dat");
-        DataCleanser cleanser = new DataCleanser(inputFile, outputFile);
+        File outputFile = new File("dataFiles//HomeCoordinates.dat");
+        DataParser cleanser = new DataParser(inputFile, outputFile);
 
-        cleanser.postcode = true;
+        cleanser.coordinates = true;
 
         cleanser.cleanAddresses();
     }
@@ -18,7 +18,7 @@ public class Main {
     public static void filterOpioidTreatments() throws FileNotFoundException {
         File inputFile = new File("dataFiles//OpioidTreatmentProgramsTexas.csv");
         File outputFile = new File("dataFiles//OpioidTreatmentProgramsTravisCounty.dat");
-        DataCleanser cleanser = new DataCleanser(inputFile, outputFile);
+        DataParser cleanser = new DataParser(inputFile, outputFile);
 
         cleanser.printOpioidTreatmentsInTravisCounty(new File("dataFiles//uniqueHomeZipCodes.dat"));
     }
@@ -26,7 +26,7 @@ public class Main {
     public static void filterPharmacies() throws FileNotFoundException {
         File inputFile = new File("dataFiles//pl_pfile_20050523-20201213.csv");
         File outputFile = new File("dataFiles//PharmacysInTravisCounty.dat");
-        DataCleanser cleanser = new DataCleanser(inputFile, outputFile);
+        DataParser cleanser = new DataParser(inputFile, outputFile);
 
         cleanser.printPharmecyLocationsInTravisCounty(new File("dataFiles//uniqueHomeZipCodes.dat"));
     }
@@ -36,13 +36,17 @@ public class Main {
 
         File inputFile = new File("dataFiles//PharmacysInTravisCounty.dat");
         File outputFile = new File("dataFiles//PharmacysTravisCountyGeographicCoordinates.dat");
-        DataCleanser cleanser = new DataCleanser(inputFile, outputFile);
+        DataParser cleanser = new DataParser(inputFile, outputFile);
 
         cleanser.convertToCoordinates();
     }
 
+    public static void removeDuplicates(File input, File output) {
+
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
-        determineCoordinatesofPharmacies();
+        findHomes();
     }
 }
 
