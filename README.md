@@ -1,2 +1,2 @@
-# ScienceFair2020-2021
+# ScienceFair 2020-2021 By: Ishan Dasgupta
 ![](ScienceCapture.PNG)
